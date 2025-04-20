@@ -1,11 +1,11 @@
 #!/bin/bash
 set -e
 
-# Install dependencies
+# Update and install necessary dependencies
 sudo apt-get update -y
-sudo apt-get install -y git curl build-essential jq
+sudo apt-get install -y curl build-essential git jq
 
-# Install Go
+# Install Go (version 1.20.4 for example)
 GO_VERSION="1.20.4"
 curl -OL https://golang.org/dl/go$GO_VERSION.linux-amd64.tar.gz
 sudo tar -C /usr/local -xzf go$GO_VERSION.linux-amd64.tar.gz
@@ -15,10 +15,10 @@ source ~/.bashrc
 # Install Ignite CLI
 curl https://get.ignite.com/cli | bash
 
-# Create blockchain project
+# Create blockchain project using Cosmos SDK (Ignite CLI)
 ignite scaffold chain blockchain
 
-# Initialize the blockchain
+# Build and start the blockchain node
 cd blockchain
 ignite chain build
 ignite chain start --home ~/.blockchain --trace
